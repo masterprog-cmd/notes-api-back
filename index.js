@@ -28,56 +28,56 @@ app.get('/api/notes', (request, response) => {
 
 // id es un parametro que se puede pasar en la url. Todos los parametors
 // se obtienen como string, por lo que a veces necesitamos pasarlo a int, bool, etc
-app.get('/api/notes/:id', (request, response) => {
-  const id = Number(request.params.id)
-  const note = notes.find(note => note.id === id)
-  // Si la información que hemos pasado como parámetro es correcta (en este caso un número), nos devuelves el JSON, si no es correcta, nos devuelve un error 404
-  if (note) {
-    // Stauts code 200
-    response.json(note)
-  } else {
-    // Status code 404
-    response.status(404).end()
-  }
-})
+// app.get('/api/notes/:id', (request, response) => {
+//   const id = Number(request.params.id)
+//   const note = notes.find(note => note.id === id)
+//   // Si la información que hemos pasado como parámetro es correcta (en este caso un número), nos devuelves el JSON, si no es correcta, nos devuelve un error 404
+//   if (note) {
+//     // Stauts code 200
+//     response.json(note)
+//   } else {
+//     // Status code 404
+//     response.status(404).end()
+//   }
+// })
 
-app.delete('/api/notes/:id', (request, response) => {
-  const id = Number(request.params.id)
-  notes = notes.filter(note => note.id !== id)
-  response.status(204).end()
-})
+// app.delete('/api/notes/:id', (request, response) => {
+//   const id = Number(request.params.id)
+//   notes = notes.filter(note => note.id !== id)
+//   response.status(204).end()
+// })
 
-app.post('/api/notes', (request, response) => {
-  // Este note contiene el body que añadimos en el body del post
-  const note = request.body
+// app.post('/api/notes', (request, response) => {
+//   // Este note contiene el body que añadimos en el body del post
+//   const note = request.body
 
-  if (!note || !note.content) {
-    return response.status(400).json({
-      error: 'Note content missing'
-    })
-  }
-  // Obtenemos los id de todas las notas
-  const ids = notes.map(note => note.id)
-  // Obtenemos el id más alto
-  const maxId = Math.max(...ids)
+//   if (!note || !note.content) {
+//     return response.status(400).json({
+//       error: 'Note content missing'
+//     })
+//   }
+//   // Obtenemos los id de todas las notas
+//   const ids = notes.map(note => note.id)
+//   // Obtenemos el id más alto
+//   const maxId = Math.max(...ids)
 
-  // Creamos una nueva nota con los parámentros que añadiremos con post
-  const newNote = {
-    // ID es el id más alto + 1
-    id: maxId + 1,
-    // Content es el contenido que añadimos en el body
-    content: note.content,
-    // important es el important que añadimos en el body,si no, por defecto es false
-    important: typeof note.important !== 'undefined' ? note.important : false,
-    // Date es la fecha actual
-    date: new Date().toISOString()
-  }
+//   // Creamos una nueva nota con los parámentros que añadiremos con post
+//   const newNote = {
+//     // ID es el id más alto + 1
+//     id: maxId + 1,
+//     // Content es el contenido que añadimos en el body
+//     content: note.content,
+//     // important es el important que añadimos en el body,si no, por defecto es false
+//     important: typeof note.important !== 'undefined' ? note.important : false,
+//     // Date es la fecha actual
+//     date: new Date().toISOString()
+//   }
 
-  // notes = notes.concat(newNote)
-  notes = [...notes, newNote]
+//   // notes = notes.concat(newNote)
+//   notes = [...notes, newNote]
 
-  response.status().json(newNote)
-})
+//   response.status().json(newNote)
+// })
 
 app.use((request, response) => {
   response.status(404).end()
