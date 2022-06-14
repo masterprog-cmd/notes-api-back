@@ -17,9 +17,7 @@ app.use(logger)
 let notes = []
 
 app.get('/', (request, response) => {
-  Note.find({}).then(notes => {
-    response.json(notes)
-  })
+  response.send('<h1>Hello World</h1>')
 })
 
 app.get('/api/notes', (request, response) => {
