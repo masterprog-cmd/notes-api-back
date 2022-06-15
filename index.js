@@ -60,8 +60,8 @@ app.post('/api/note', (request, response) => {
   // notes = notes.concat(newNote)
   notes = [...notes, newNote]
   Note.create(notes)
-  notes = []
   response.json(notes)
+  notes = []
   // response.send(notes)
 })
 
