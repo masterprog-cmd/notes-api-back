@@ -3,7 +3,10 @@ const mongoose = require('mongoose');
 const connectionString = 'mongodb+srv://masterprog-cmd:HkT91o52@cluster0.yoprb.mongodb.net/masterdb?retryWrites=true&w=majority';
 
 //Conexión mongoDB
-mongoose.connect(connectionString)
+mongoose.connect(connectionString, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    })
     .then(() => {
         console.log('Connected to database!');
     })
