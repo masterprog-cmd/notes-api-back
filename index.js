@@ -53,6 +53,8 @@ app.post('/api/note', (request, response) => {
     content: note.content,
     // important es el important que añadimos en el body,si no, por defecto es false
     important: typeof note.important !== 'undefined' ? note.important : false,
+    // done es el done que añadimos en el body,si no, por defecto es false
+    done: typeof note.done !== 'undefined' ? note.done : false,
     // Date es la fecha actual
     date: new Date().toISOString()
   }
