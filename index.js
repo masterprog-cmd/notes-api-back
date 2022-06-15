@@ -61,6 +61,7 @@ app.post('/api/note', (request, response) => {
   notes = [...notes, newNote]
   Note.create(notes)
   notes = []
+  response.json(notes)
   // response.send(notes)
 })
 
